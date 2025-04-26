@@ -1,52 +1,27 @@
-import java.util.Scanner;
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
 
-public class Calculator {
+int main() {
+    srand(time(0)); 
+    int secretNumber = rand() % 100 + 1; 
+    int guess;
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    cout << "I have generated a number between 1 and 100. Can you guess it?" << endl;
 
-        System.out.println("Simple Calculator");
-        
-        // Input first number
-        System.out.print("Enter first number: ");
-        double num1 = scanner.nextDouble();
-        
-        // Input second number
-        System.out.print("Enter second number: ");
-        double num2 = scanner.nextDouble();
-        
-        // Choose an operation
-        System.out.print("Choose an operation (+, -, *, /): ");
-        char operator = scanner.next().charAt(0);
-        
-        double result;
+    do {
+        cout << "Enter your guess: ";
+        cin >> guess;
 
-        // Perform calculation based on operator
-        switch (operator) {
-            case '+':
-                result = num1 + num2;
-                System.out.println("Result: " + result);
-                break;
-            case '-':
-                result = num1 - num2;
-                System.out.println("Result: " + result);
-                break;
-            case '*':
-                result = num1 * num2;
-                System.out.println("Result: " + result);
-                break;
-            case '/':
-                if (num2 != 0) {
-                    result = num1 / num2;
-                    System.out.println("Result: " + result);
-                } else {
-                    System.out.println("Error: Division by zero!");
-                }
-                break;
-            default:
-                System.out.println("Invalid operator!");
+        if (guess < secretNumber) {
+            cout << "Too low. Try again." << endl;
+        } else if (guess > secretNumber) {
+            cout << "Too high. Try again." << endl;
+        } else {
+            cout << "Congratulations! You guessed the number." << endl;
         }
+    } while (guess != secretNumber);
 
-        scanner.close();
-    }
+    return 0;
 }
