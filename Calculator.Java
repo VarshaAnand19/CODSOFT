@@ -1,27 +1,53 @@
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
-using namespace std;
+import java.util.Scanner;
 
-int main() {
-    srand(time(0)); 
-    int secretNumber = rand() % 100 + 1; 
-    int guess;
+public class Calculator {
 
-    cout << "I have generated a number between 1 and 100. Can you guess it?" << endl;
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-    do {
-        cout << "Enter your guess: ";
-        cin >> guess;
+        double num1, num2, result;
+        char operator;
 
-        if (guess < secretNumber) {
-            cout << "Too low. Try again." << endl;
-        } else if (guess > secretNumber) {
-            cout << "Too high. Try again." << endl;
-        } else {
-            cout << "Congratulations! You guessed the number." << endl;
+        System.out.println("Welcome to the Calculator!");
+        System.out.print("Enter first number: ");
+        num1 = scanner.nextDouble();
+
+        System.out.print("Enter an operator (+, -, *, /): ");
+        operator = scanner.next().charAt(0);
+
+        System.out.print("Enter second number: ");
+        num2 = scanner.nextDouble();
+
+        switch (operator) {
+            case '+':
+                result = num1 + num2;
+                System.out.println("Result: " + result);
+                break;
+
+            case '-':
+                result = num1 - num2;
+                System.out.println("Result: " + result);
+                break;
+
+            case '*':
+                result = num1 * num2;
+                System.out.println("Result: " + result);
+                break;
+
+            case '/':
+                if (num2 != 0) {
+                    result = num1 / num2;
+                    System.out.println("Result: " + result);
+                } else {
+                    System.out.println("Error! Cannot divide by zero.");
+                }
+                break;
+
+            default:
+                System.out.println("Invalid operator!");
+                break;
         }
-    } while (guess != secretNumber);
 
-    return 0;
+        scanner.close();
+    }
 }
